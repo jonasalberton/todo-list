@@ -12,7 +12,7 @@ export const {
 } = createStitches({
   theme: {
     colors: {
-      background: 'hsl(235, 21%, 11%)'
+      background: ''
     },
   },
   media: {
