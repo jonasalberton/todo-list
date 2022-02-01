@@ -1,4 +1,5 @@
 import { styled } from '../stitches.config';
+import TodoList from '../components/TodoList';
 import darkBg from '../assets/bg-desktop-dark.jpg';
 import ThemeSwitcher from '../components/ThemeSwitcher';
 
@@ -32,6 +33,7 @@ function Home() {
       <Header style={{backgroundImage: `url(${darkBg})`}}></Header>
       <Container>
         <ThemeSwitcher></ThemeSwitcher>
+        <TodoList></TodoList>
       </Container>
     </Body>
   )

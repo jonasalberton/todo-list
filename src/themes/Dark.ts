@@ -2,7 +2,7 @@ import {createTheme } from '../stitches.config';
 
 const DarkTheme = createTheme({
   colors: {
-    background: 'hsl(235, 21%, 11%)',
+    background: 'hsl(240, 20%, 12%)',
   },
 });
 
