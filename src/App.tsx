@@ -8,7 +8,7 @@ import ThemeContext from './themes/ThemeContext';
 const Body = styled('div', {
   background: '$background',
   width: '100%',
-  minHeight: '100%'
+  minHeight: '100%',
 })
 
 

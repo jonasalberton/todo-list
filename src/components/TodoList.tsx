@@ -1,18 +1,19 @@
 import { useState } from "react";
+import TodoInput from "./TodoInput";
 import { Todo } from "../models/Todo";
-import Input from "./Input";
 
 function TodoList() {
   const [todoList, setTodoList] = useState<Todo[]>([]);
 
-  function addTodo(todo: Todo) {
-    setTodoList([...todoList, todo])
+  const addTodo = (todo: Todo) =>  {
+    setTodoList([...todoList, todo]);
   }
+
 
   return (
     <div>
-      <Input onAddNew={addTodo}></Input>
-      { todoList.map((item) => <div key={item.id}> item {item.text} </div>)}
+      <TodoInput onAddNew={addTodo}></TodoInput>
+      { todoList.map((item) => <div key={item.id}> item {item.id} </div>)}
     </div>
   );
 }

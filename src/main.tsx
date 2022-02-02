@@ -6,7 +6,8 @@ import { globalCss } from './stitches.config';
 const globalStyles = globalCss({
   '*': {
     margin: 0,
-    padding: 0
+    padding: 0,
+    fontSize: '18px'
   },
 });
 
