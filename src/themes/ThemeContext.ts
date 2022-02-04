@@ -1,8 +1,9 @@
 import { createContext } from "react";
+import Theme from '../models/Theme';
 
 type Context = {
-  theme: 'dark' | 'light',
-  setTheme: (field: 'dark' | 'light') => void
+  theme: Theme,
+  setTheme: (field: Theme) => void
 }
 
 const ThemeContext = createContext<Context>({theme: 'dark', setTheme: () => ''});

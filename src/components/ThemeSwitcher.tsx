@@ -1,7 +1,7 @@
-import { styled } from '../stitches.config';
-import moon from '../assets/icon-moon.svg';
+import { useContext } from 'react';
 import sun from '../assets/icon-sun.svg';
-import { useContext, useState } from 'react';
+import moon from '../assets/icon-moon.svg';
+import { styled } from '../stitches.config';
 import ThemeContext from '../themes/ThemeContext';
 
 const Switcher = styled('button', {

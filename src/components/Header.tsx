@@ -10,7 +10,7 @@ const Heading = styled('div',  {
   top: 0,
   height: '300px',
   backgroundRepeat: 'no-repeat',
-  backgroundSize: 'cover'
+  backgroundSize: 'cover',
 });
 
 
