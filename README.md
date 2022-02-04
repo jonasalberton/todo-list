@@ -1,2 +1,2 @@
 # todo-list
-Todo list app using react
+Todo list app using React, Vite, stitches.css, Jest,
