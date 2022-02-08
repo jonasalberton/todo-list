@@ -1,4 +1,7 @@
 import { createStitches } from '@stitches/react';
+import ThemeColors from './models/ThemeColors';
+
+const colors: Partial<ThemeColors> = {};
 
 export const {
   styled,
@@ -11,9 +14,7 @@ export const {
   config,
 } = createStitches({
   theme: {
-    colors: {
-      background: ''
-    },
+   colors
   },
   media: {
     bp1: '(min-width: 480px)',

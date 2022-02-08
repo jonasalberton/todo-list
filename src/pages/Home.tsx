@@ -16,13 +16,27 @@ const Container = styled('div', {
   zIndex: '1'
 })
 
+const Title = styled('div', {
+  fontSize: '58px',
+  color: 'white',
+  fontWeight: 'bold'
+})
+
+const TitleContainer = styled('div', {
+   display: 'flex',
+   justifyContent: 'space-between'
+});
+
 function Home() {
 
   return (
     <Body>
       <Header></Header>
       <Container>
-        <ThemeSwitcher></ThemeSwitcher>
+        <TitleContainer>
+          <Title>Todo</Title>
+          <ThemeSwitcher/>
+        </TitleContainer>
         <TodoList></TodoList>
       </Container>
     </Body>

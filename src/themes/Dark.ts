@@ -1,9 +1,13 @@
-import {createTheme } from '../stitches.config';
+import { createTheme } from '../stitches.config';
+import ThemeColors from '../models/ThemeColors';
+
+const colors: ThemeColors = {
+  backgroundApp: 'hsl(240, 20%, 12%)',
+  textColor: 'white'
+}
 
 const DarkTheme = createTheme({
-  colors: {
-    background: 'hsl(240, 20%, 12%)',
-  },
+  colors
 });
 
 export default DarkTheme;
