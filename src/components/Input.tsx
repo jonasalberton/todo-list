@@ -10,7 +10,8 @@ const Container = styled('div', {
   alignItems: 'center',
   borderRadius: '$md',
   boxSizing: 'border-box',
-  padding: '$md'
+  padding: '$md',
+  marginBottom: '$md'
 })
 
 const Input = styled('input', {
@@ -44,8 +45,8 @@ function TodoInput(props: Props) {
     if (event.key !== enterKey) return;
 
     const inputEl = event.currentTarget;
-    resetState(inputEl);
     props.onAddNew(createTodo(inputEl.value, true));
+    resetState(inputEl);
   }
 
   return (
