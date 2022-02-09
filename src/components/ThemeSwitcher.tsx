@@ -11,6 +11,9 @@ const Switcher = styled('button', {
   border: 'none',
   outline: 'none',
   background: 'transparent',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
   cursor: 'pointer',
   '&:hover': {
     background: '#ffffff30'

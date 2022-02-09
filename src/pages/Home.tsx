@@ -23,8 +23,10 @@ const Title = styled('div', {
 })
 
 const TitleContainer = styled('div', {
-   display: 'flex',
-   justifyContent: 'space-between'
+  height: '150px',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center'
 });
 
 function Home() {

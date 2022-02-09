@@ -1,15 +1,15 @@
-import { useState } from 'react';
 import Home from './pages/Home';
-import { styled, theme } from './stitches.config';
+import { useState } from 'react';
+import Theme from './models/Theme';
 import DarkTheme from './themes/Dark';
 import LightTheme from './themes/Light';
 import ThemeContext from './themes/ThemeContext';
-import Theme from './models/Theme';
+import { styled } from './stitches.config';
 import localStorageService from './services/localStorageService';
 
 const Body = styled('div', {
-  background: theme.colors.backgroundApp,
-  color: theme.colors.textColor,
+  background: '$backgroundApp',
+  color: '$textColor',
   width: '100%',
   minHeight: '100%',
 });

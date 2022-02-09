@@ -1,21 +1,24 @@
+import CheckBox from "./CheckBox";
 import { KeyboardEvent } from "react";
 import { Todo } from "../models/Todo";
-import { generateRandomId } from '../utils/index';
 import { styled } from '../stitches.config';
-import CheckBox from "./CheckBox";
+import { generateRandomId } from '../utils/index';
 
 const Container = styled('div', {
-  width: '100%',
-  height: '40px',
   display: 'flex',
-  alignItems: 'center'
+  background: 'white',
+  alignItems: 'center',
+  borderRadius: '$md',
+  boxSizing: 'border-box',
+  padding: '$md'
 })
 
 const Input = styled('input', {
-  width: '100%',
   height: '100%',
+  display: 'flex',
+  flex: '1',
   border: 'none',
-  outline: 'none'
+  outline: 'none',
 })
 
 type Props = {

@@ -14,7 +14,14 @@ export const {
   config,
 } = createStitches({
   theme: {
-   colors
+   colors: {} as ThemeColors,
+   space: {
+     md: '1rem'
+   },
+   radii: {
+     md: '5px',
+     circle: '50%'
+   }
   },
   media: {
     bp1: '(min-width: 480px)',
