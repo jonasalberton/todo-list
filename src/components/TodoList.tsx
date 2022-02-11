@@ -9,6 +9,7 @@ const Container = styled('div', {
   background: 'white',
   alignItems: 'center',
   boxSizing: 'border-box',
+  borderBottom: '1px solid #f6f6f6',
   padding: '$md',
   boxShadow: '$md',
   variants: {
@@ -18,10 +19,25 @@ const Container = styled('div', {
       },
       noBorder: {
         borderRadius: '0'
-      }
+      },
+      roundBottom: {
+        borderRadius: '0 0 $md $md'
+      },
     }
   }
-})
+});
+
+const Button = styled('button', {
+  border: 'none',
+  background: 'none',
+  padding: '0 5px',
+  cursor: 'pointer',
+  color: 'blue',
+  '&:hover': {
+    opacity: '.5'
+  }
+
+});
 
 function TodoList() {
   const [todoList, setTodoList] = useState<Todo[]>([]);
@@ -38,7 +54,19 @@ function TodoList() {
           <Container key={item.id} border={index === 0 ? 'roundTop' : 'noBorder'}>
             <CheckBox/>
               {item.text}
-          </Container>)
+          </Container>)}
+
+      {
+        todoList.length > 0 &&
+        <Container border={'roundBottom'}>
+          <div>{todoList.length} itens left</div>
+          <div>
+            <Button>All</Button>
+            <Button>Active</Button>
+            <Button>Completed</Button>
+          </div>
+          <Button>Clear Completed</Button>
+        </Container>
       }
     </div>
   );
