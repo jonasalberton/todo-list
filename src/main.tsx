@@ -7,7 +7,8 @@ const globalStyles = globalCss({
   '*': {
     margin: 0,
     padding: 0,
-    fontSize: '18px'
+    fontSize: '$md',
+    fontFamily: 'Josefin Sans, sans-serif;'
   },
 });
 

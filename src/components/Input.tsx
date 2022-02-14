@@ -20,6 +20,7 @@ const Input = styled('input', {
   flex: '1',
   border: 'none',
   outline: 'none',
+  color: '$textColor'
 })
 
 type Props = {
@@ -45,6 +46,12 @@ function TodoInput(props: Props) {
     if (event.key !== enterKey) return;
 
     const inputEl = event.currentTarget;
+    
+    if (inputEl.value.length === 0) {
+      alert('type some text');
+      return;
+    }
+
     props.onAddNew(createTodo(inputEl.value, true));
     resetState(inputEl);
   }

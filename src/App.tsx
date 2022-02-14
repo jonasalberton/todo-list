@@ -11,7 +11,7 @@ const Body = styled('div', {
   background: '$backgroundApp',
   color: '$textColor',
   width: '100%',
-  minHeight: '100%',
+  minHeight: '100vh',
 });
 
 

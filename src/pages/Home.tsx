@@ -12,7 +12,6 @@ const Body = styled('div', {
 const Container = styled('div', {
   width: '100%',
   maxWidth: '600px',
-  height: '1000px',
   zIndex: '1'
 })
 

@@ -15,6 +15,10 @@ export const {
 } = createStitches({
   theme: {
    colors: {} as ThemeColors,
+   fontSizes: {
+     sm: '14px',
+     md: '18px'
+   },
    space: {
      md: '1rem'
    },

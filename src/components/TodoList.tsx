@@ -23,6 +23,12 @@ const Container = styled('div', {
       roundBottom: {
         borderRadius: '0 0 $md $md'
       },
+    },
+    justify: {
+      between: {
+        display: 'flex',
+        justifyContent: 'space-between'
+      }
     }
   }
 });
@@ -58,7 +64,7 @@ function TodoList() {
 
       {
         todoList.length > 0 &&
-        <Container border={'roundBottom'}>
+        <Container border="roundBottom" justify="between">
           <div>{todoList.length} itens left</div>
           <div>
             <Button>All</Button>
