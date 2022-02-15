@@ -3,7 +3,10 @@ import ThemeColors from '../models/ThemeColors';
 
 const colors: ThemeColors = {
   backgroundApp: 'hsl(240, 0%, 98%)',
-  textColor: 'hsl(235, 19%, 35%)'
+  text: 'hsl(235, 19%, 35%)',
+  disableText: 'hsl(233, 11%, 84%)',
+  component: 'hsl(0, 0%, 100%)',
+  border: 'hsl(0, 0%, 96%)'
 }
 
 const LightTheme = createTheme({

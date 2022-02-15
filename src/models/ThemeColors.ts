@@ -1,6 +1,9 @@
 type ThemeColors = {
   backgroundApp: string,
-  textColor: string,
+  text: string,
+  disableText: string,
+  component: string,
+  border: string
 }
 
 export default ThemeColors;

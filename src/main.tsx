@@ -10,6 +10,9 @@ const globalStyles = globalCss({
     fontSize: '$md',
     fontFamily: 'Josefin Sans, sans-serif;'
   },
+  '::placeholder': {
+    color: '$text'
+  }
 });
 
 ReactDOM.render(

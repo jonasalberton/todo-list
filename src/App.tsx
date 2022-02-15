@@ -9,7 +9,7 @@ import localStorageService from './services/localStorageService';
 
 const Body = styled('div', {
   background: '$backgroundApp',
-  color: '$textColor',
+  color: '$text',
   width: '100%',
   minHeight: '100vh',
 });

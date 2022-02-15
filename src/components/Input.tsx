@@ -6,7 +6,7 @@ import { KeyboardEvent, useState } from "react";
 
 const Container = styled('div', {
   display: 'flex',
-  background: 'white',
+  background: '$component',
   alignItems: 'center',
   borderRadius: '$md',
   boxSizing: 'border-box',
@@ -17,10 +17,11 @@ const Container = styled('div', {
 const Input = styled('input', {
   height: '100%',
   display: 'flex',
+  background: '$component',
   flex: '1',
   border: 'none',
   outline: 'none',
-  color: '$textColor'
+  color: '$text'
 })
 
 type Props = {

@@ -3,13 +3,14 @@ import Input from "./Input";
 import type { Task } from '../models/Task';
 import { styled } from '../stitches.config';
 import CheckBox from "./CheckBox";
+import { list } from '../mocks/list';
 
 const Container = styled('div', {
   display: 'flex',
-  background: 'white',
+  background: '$component',
   alignItems: 'center',
   boxSizing: 'border-box',
-  borderBottom: '1px solid #f6f6f6',
+  borderBottom: '1px solid $border',
   padding: '$md',
   boxShadow: '$md',
   variants: {
@@ -29,6 +30,12 @@ const Container = styled('div', {
         display: 'flex',
         justifyContent: 'space-between'
       }
+    },
+    disabled: {
+      true: {
+        color: '$disableText',
+        textDecoration: 'line-through'
+      }
     }
   }
 });
@@ -46,7 +53,7 @@ const Button = styled('button', {
 });
 
 function TodoList() {
-  const [todoList, setTodoList] = useState<Task[]>([]);
+  const [todoList, setTodoList] = useState<Task[]>(list);
 
   const addTask = (todo: Task) =>  {
     setTodoList([todo, ...todoList]);
@@ -65,12 +72,17 @@ function TodoList() {
     setTodoList(todoListUpdated);
   }
 
+
+  const handleClearCompletedItens = () => {
+    setTodoList([...todoList.filter(item => item.isCompleted !== true)]);
+  }
+
   return (
     <div>
       <Input onAddNew={addTask}></Input>
       {
         todoList.map((item, index) =>
-          <Container key={item.id} border={index === 0 ? 'roundTop' : 'noBorder'}>
+          <Container key={item.id} border={index === 0 ? 'roundTop' : 'noBorder'} disabled={item.isCompleted}>
             <CheckBox 
               value={item.isCompleted}
               onChange={(value) => onChangeTaskStatus(item.id, value)}/>
@@ -86,7 +98,7 @@ function TodoList() {
             <Button>Active</Button>
             <Button>Completed</Button>
           </div>
-          <Button>Clear Completed</Button>
+          <Button onClick={handleClearCompletedItens}>Clear Completed</Button>
         </Container>
       }
     </div>
