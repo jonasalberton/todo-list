@@ -1,8 +1,8 @@
 import CheckBox from "./CheckBox";
-import { KeyboardEvent } from "react";
-import { Todo } from "../models/Todo";
+import type { Task } from "../models/Task";
 import { styled } from '../stitches.config';
 import { generateRandomId } from '../utils/index';
+import { KeyboardEvent, useState } from "react";
 
 const Container = styled('div', {
   display: 'flex',
@@ -24,13 +24,14 @@ const Input = styled('input', {
 })
 
 type Props = {
-  onAddNew: (todo: Todo) => void
+  onAddNew: (todo: Task) => void
 }
 
-function TodoInput(props: Props) {
+function TodoInput({ onAddNew }: Props) {
+  const [checkBoxValue, setCheckBoxValue] = useState<boolean>(false);
   const enterKey = 'Enter';
 
-  const createTodo = (text: string, isCompleted: boolean): Todo => {
+  const createTodo = (text: string, isCompleted: boolean): Task => {
     return {
       id: generateRandomId(),
       isCompleted,
@@ -40,6 +41,7 @@ function TodoInput(props: Props) {
 
   const resetState = (inputInstance: HTMLInputElement): void => {
     inputInstance.value = '';
+    setCheckBoxValue(false);
   }
 
   const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>): void => {
@@ -52,13 +54,13 @@ function TodoInput(props: Props) {
       return;
     }
 
-    props.onAddNew(createTodo(inputEl.value, true));
+    onAddNew(createTodo(inputEl.value, checkBoxValue));
     resetState(inputEl);
   }
 
   return (
     <Container>
-      <CheckBox></CheckBox>
+      <CheckBox value={checkBoxValue} onChange={setCheckBoxValue}></CheckBox>
       <Input
         onKeyPress={handleKeyPress}
         placeholder="Type your text here"

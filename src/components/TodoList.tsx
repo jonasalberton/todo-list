@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Input from "./Input";
-import { Todo } from "../models/Todo";
+import type { Task } from '../models/Task';
 import { styled } from '../stitches.config';
 import CheckBox from "./CheckBox";
 
@@ -46,19 +46,34 @@ const Button = styled('button', {
 });
 
 function TodoList() {
-  const [todoList, setTodoList] = useState<Todo[]>([]);
+  const [todoList, setTodoList] = useState<Task[]>([]);
 
-  const addTodo = (todo: Todo) =>  {
+  const addTask = (todo: Task) =>  {
     setTodoList([todo, ...todoList]);
+  }
+
+  const onChangeTaskStatus = (taskId: string, value: boolean) => {
+    const todoListUpdated = todoList.map(item => {
+      
+      if (item.id === taskId) {
+        item.isCompleted= value;
+      }
+
+      return item;
+    })
+
+    setTodoList(todoListUpdated);
   }
 
   return (
     <div>
-      <Input onAddNew={addTodo}></Input>
+      <Input onAddNew={addTask}></Input>
       {
         todoList.map((item, index) =>
           <Container key={item.id} border={index === 0 ? 'roundTop' : 'noBorder'}>
-            <CheckBox/>
+            <CheckBox 
+              value={item.isCompleted}
+              onChange={(value) => onChangeTaskStatus(item.id, value)}/>
               {item.text}
           </Container>)}
 
