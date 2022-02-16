@@ -1,17 +1,18 @@
-import { useState } from "react";
 import Input from "./Input";
+import { useState } from "react";
+import CheckBox from "./CheckBox";
+import Filter from '../models/Filter';
 import type { Task } from '../models/Task';
 import { styled } from '../stitches.config';
-import CheckBox from "./CheckBox";
-import { list } from '../mocks/list';
+import * as TaskStore from '../store/taskStore';
 
 const Container = styled('div', {
   display: 'flex',
   background: '$component',
   alignItems: 'center',
   boxSizing: 'border-box',
-  borderBottom: '1px solid $border',
   padding: '$md',
+  borderBottom: '1px solid $border',
   boxShadow: '$md',
   variants: {
     border: {
@@ -31,7 +32,7 @@ const Container = styled('div', {
         justifyContent: 'space-between'
       }
     },
-    disabled: {
+    completed: {
       true: {
         color: '$disableText',
         textDecoration: 'line-through'
@@ -52,37 +53,70 @@ const Button = styled('button', {
 
 });
 
-function TodoList() {
-  const [todoList, setTodoList] = useState<Task[]>(list);
+type State = {
+  viewList: Task[],
+  filter: Filter,
+}
 
-  const addTask = (todo: Task) =>  {
-    setTodoList([todo, ...todoList]);
+function TodoList() {
+  const [state, setState] = useState<State>({viewList: TaskStore.getTaskList(), filter: 'All'});
+
+  const addTask = (task: Task) => {
+    const newList = [task, ...TaskStore.getTaskList()];
+    TaskStore.setTaskList(newList);
+    updateListView(newList);
+  }
+
+  const updateListView = (viewList: Task[]) => {
+    setState({
+      ...state,
+      viewList
+    })
   }
 
   const onChangeTaskStatus = (taskId: string, value: boolean) => {
-    const todoListUpdated = todoList.map(item => {
-      
-      if (item.id === taskId) {
-        item.isCompleted= value;
-      }
-
+    const newList = TaskStore.getTaskList().map(item => {
+      if (item.id === taskId) item.isCompleted = value;
       return item;
-    })
+    });
 
-    setTodoList(todoListUpdated);
+    TaskStore.setTaskList(newList);
+    updateListView(newList);
   }
 
+  const removeCompletedItens = () => {
+    const newItens = TaskStore.getTaskList().filter(item => item.isCompleted !== true);
+    TaskStore.setTaskList(newItens);
+    updateListView(newItens);
+  }
 
-  const handleClearCompletedItens = () => {
-    setTodoList([...todoList.filter(item => item.isCompleted !== true)]);
+  const showActiveItens = () => {
+    setState({
+      filter: 'Active',
+      viewList: TaskStore.getTaskList().filter(item => !item.isCompleted)
+    });
+  }
+
+  const showCompletedItens = () => {
+    setState({
+      filter: 'Completed',
+      viewList: TaskStore.getTaskList().filter(item => item.isCompleted)
+    });
+  }
+
+  const showAllItens = () => {
+    setState({
+      filter: 'All',
+      viewList: TaskStore.getTaskList()
+    });
   }
 
   return (
     <div>
       <Input onAddNew={addTask}></Input>
       {
-        todoList.map((item, index) =>
-          <Container key={item.id} border={index === 0 ? 'roundTop' : 'noBorder'} disabled={item.isCompleted}>
+        state.viewList.map((item, index) =>
+          <Container key={item.id} border={index === 0 ? 'roundTop' : 'noBorder'} completed={item.isCompleted}>
             <CheckBox 
               value={item.isCompleted}
               onChange={(value) => onChangeTaskStatus(item.id, value)}/>
@@ -90,15 +124,15 @@ function TodoList() {
           </Container>)}
 
       {
-        todoList.length > 0 &&
+        state.viewList.length > 0 &&
         <Container border="roundBottom" justify="between">
-          <div>{todoList.length} itens left</div>
+          <div>{state.viewList.length} itens left</div>
           <div>
-            <Button>All</Button>
-            <Button>Active</Button>
-            <Button>Completed</Button>
+            <Button onClick={showAllItens}>All</Button>
+            <Button onClick={showActiveItens}>Active</Button>
+            <Button onClick={showCompletedItens}>Completed</Button>
           </div>
-          <Button onClick={handleClearCompletedItens}>Clear Completed</Button>
+          <Button onClick={removeCompletedItens}>Clear Completed</Button>
         </Container>
       }
     </div>
