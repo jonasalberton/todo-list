@@ -16,7 +16,7 @@ export const {
   theme: {
    colors: {} as ThemeColors,
    fontSizes: {
-     sm: '14px',
+     sm: '15px',
      md: '18px'
    },
    space: {

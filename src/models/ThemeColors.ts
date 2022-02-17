@@ -3,7 +3,9 @@ type ThemeColors = {
   text: string,
   disableText: string,
   component: string,
-  border: string
+  border: string,
+  checkboxBorder: string,
+  primary: string
 }
 
 export default ThemeColors;

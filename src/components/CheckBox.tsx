@@ -9,7 +9,7 @@ const Container = styled('div', {
   cursor: 'pointer',
   marginRight: '$md',
   flexShrink: '0',
-  border: '2px solid #e0e0e0',
+  border: '2px solid $checkboxBorder',
   borderRadius: '$circle',
   '&:hover': {
     border: '2px solid hsl(280, 87%, 65%)'

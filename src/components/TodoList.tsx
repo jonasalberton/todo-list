@@ -45,13 +45,24 @@ const Button = styled('button', {
   border: 'none',
   background: 'none',
   padding: '0 5px',
+  color: '$text',
   cursor: 'pointer',
-  color: 'blue',
   '&:hover': {
-    opacity: '.5'
+    opacity: '.6'
+  },
+  variants: {
+    selected: {
+      true: {
+        color: '$primary'
+      }
+    }
   }
-
 });
+
+const Typograph = styled('span', {
+  fontSize: '$sm',
+  
+})
 
 type State = {
   viewList: Task[],
@@ -126,13 +137,23 @@ function TodoList() {
       {
         state.viewList.length > 0 &&
         <Container border="roundBottom" justify="between">
-          <div>{state.viewList.length} itens left</div>
+          <Typograph>{state.viewList.length} itens left</Typograph>
           <div>
-            <Button onClick={showAllItens}>All</Button>
-            <Button onClick={showActiveItens}>Active</Button>
-            <Button onClick={showCompletedItens}>Completed</Button>
+            <Button onClick={showAllItens} selected={state.filter === 'All'}>
+              <Typograph >All</Typograph>
+            </Button>
+
+            <Button onClick={showActiveItens} selected={state.filter === 'Active'}>
+              <Typograph >Active</Typograph>
+            </Button>
+
+            <Button onClick={showCompletedItens} selected={state.filter === 'Completed'}>
+              <Typograph >Completed</Typograph>
+            </Button>
           </div>
-          <Button onClick={removeCompletedItens}>Clear Completed</Button>
+            <Button onClick={removeCompletedItens}>
+              <Typograph>Clear Completed</Typograph>
+            </Button>
         </Container>
       }
     </div>

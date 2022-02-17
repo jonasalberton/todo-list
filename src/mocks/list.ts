@@ -3,29 +3,29 @@ import { Task } from "../models/Task";
 const list: Task[] = [
   {
     id: '1',
-    isCompleted: false,
-    text: 'Fix Dark Theme'
+    isCompleted: true,
+    text: 'Fix filters font-size'
   },
   {
     id: '2',
-    isCompleted: false,
-    text: 'Implements delete feature'
+    isCompleted: true,
+    text: 'Fix filters style'
   },
   {
     id: '3',
-    isCompleted: false,
-    text: 'Implements Drag and Drop feature'
+    isCompleted: true,
+    text: 'Fix title'
   },
   {
     id: '4',
-    isCompleted: false,
-    text: 'Fix mobile styles'
+    isCompleted: true,
+    text: 'Fix Checkbox Dark Theme'
   },
   {
     id: '5',
-    isCompleted: true,
-    text: 'Add completed State style'
-  }
+    isCompleted: false,
+    text: 'Fix Text Dark Theme'
+  },
 ];
 
 export { list };

@@ -6,7 +6,9 @@ const colors: ThemeColors = {
   text: 'hsl(235, 19%, 35%)',
   disableText: 'hsl(233, 11%, 84%)',
   component: 'hsl(0, 0%, 100%)',
-  border: 'hsl(0, 0%, 96%)'
+  border: 'hsl(0, 0%, 96%)',
+  checkboxBorder: 'hsl(0, 0%, 88%)',
+  primary: 'hsl(220, 98%, 61%)'
 }
 
 const LightTheme = createTheme({

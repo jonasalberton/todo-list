@@ -16,9 +16,11 @@ const Container = styled('div', {
 })
 
 const Title = styled('div', {
-  fontSize: '58px',
-  color: 'white',
-  fontWeight: 'bold'
+  fontSize: '40px',
+  color: 'White',
+  fontWeight: 'bold',
+  textTransform: 'uppercase',
+  letterSpacing: '7px'
 })
 
 const TitleContainer = styled('div', {
