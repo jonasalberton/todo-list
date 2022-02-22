@@ -5,23 +5,26 @@ import { styled } from '../stitches.config';
 import ThemeContext from '../themes/ThemeContext';
 
 const Switcher = styled('button', {
-  width: '40px',
-  height: '40px',
-  borderRadius: '50%',
-  border: 'none',
+  width: '$xlg',
+  height: '$xlg',
   outline: 'none',
-  background: 'transparent',
+  border: 'none',
   display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
   cursor: 'pointer',
+  alignItems: 'center',
+  borderRadius: '$circle',
+  justifyContent: 'center',
+  background: 'transparent',
   '&:hover': {
     background: '#ffffff30'
   }
 });
 
+
+
 function ThemeSwitcher() {
   const { theme, setTheme } = useContext(ThemeContext);
+  const themeIcon = theme === 'dark'? sun : moon;
 
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
@@ -30,7 +33,7 @@ function ThemeSwitcher() {
 
   return (
     <Switcher onClick={toggleTheme}>
-      <img src={theme === 'dark'? sun : moon} alt="Theme icon" />
+      <img src={themeIcon} alt="Theme icon" />
     </Switcher>
   );  
 }

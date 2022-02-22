@@ -1,48 +1,30 @@
+import Header from '../components/Header';
 import { styled } from '../stitches.config';
 import TodoList from '../components/TodoList';
-import ThemeSwitcher from '../components/ThemeSwitcher';
-import Header from '../components/Header';
+import Toolbar from '../components/Toolbar';
 
-const Body = styled('div', {
+const Container = styled('div', {
   display: 'flex',
   padding: '30px',
   justifyContent: 'center'
 })
 
-const Container = styled('div', {
+const Body = styled('div', {
   width: '100%',
   maxWidth: '600px',
   zIndex: '1'
 })
 
-const Title = styled('div', {
-  fontSize: '40px',
-  color: 'White',
-  fontWeight: 'bold',
-  textTransform: 'uppercase',
-  letterSpacing: '7px'
-})
-
-const TitleContainer = styled('div', {
-  height: '150px',
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center'
-});
 
 function Home() {
-
   return (
-    <Body>
+    <Container>
       <Header></Header>
-      <Container>
-        <TitleContainer>
-          <Title>Todo</Title>
-          <ThemeSwitcher/>
-        </TitleContainer>
+      <Body>
+        <Toolbar></Toolbar>
         <TodoList></TodoList>
-      </Container>
-    </Body>
+      </Body>
+    </Container>
   )
 }
 

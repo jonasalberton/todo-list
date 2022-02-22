@@ -2,13 +2,13 @@ import { styled } from '../stitches.config';
 import check from '../assets/icon-check.svg';
 
 const Container = styled('div', {
+  width: '$lg',
+  height: '$lg',
   display: 'flex',
+  flexShrink: 0,
   position: 'relative',
-  height: '25px',
-  width: '25px',
   cursor: 'pointer',
   marginRight: '$md',
-  flexShrink: '0',
   border: '2px solid $checkboxBorder',
   borderRadius: '$circle',
   '&:hover': {
@@ -17,25 +17,25 @@ const Container = styled('div', {
 });
 
 const Input = styled('input', {
+  zIndex: 2,
   opacity: 0,
-  width: '25px',
-  height: '25px',
-  borderRadius: '$circle',
+  width: '$lg',
+  height: '$lg',
   cursor: 'pointer',
-  zIndex: '2',
   position: 'absolute',
+  borderRadius: '$circle',
 });
 
 const Checkmark = styled('span', {
-  position: 'absolute',
   top: 0,
   left: 0,
-  zIndex: '1',
-  height: '25px',
-  borderRadius: '50%',
-  width: '25px',
+  zIndex: 1,
+  width: '$lg',
+  height: '$lg',
   display: 'flex',
+  position: 'absolute',
   alignItems: 'center',
+  borderRadius: '$circle',
   justifyContent: 'center',
   background: 'linear-gradient(113deg, #57ddff, #c058f3)',
   variants: {
@@ -50,30 +50,25 @@ const Checkmark = styled('span', {
   }
 });
 
+
+
 type Props = {
   value: boolean,
   onChange?: (value: boolean) => void
-}
+};
+
 
 function CheckBox({ value, onChange }: Props) {
 
   const handleInputChanged = () => {
-    const newState = !value;
-
-    if (!onChange) {
-      throw new Error("You need to pass a (onChange) function prop");
-    }
-
-    console.log('aroo');
-    
-    onChange(newState);
+    onChange && onChange(!value);
   }
 
   return (
     <Container>
-      <Input checked={value} type="checkbox" onChange={handleInputChanged} />
+      <Input type="checkbox" checked={value} onChange={handleInputChanged}/>
       <Checkmark checked={value}>
-        <img src={check} alt="Task completed icon" />
+        <img src={check} alt="Completed Task Icon" />
       </Checkmark>
     </Container>
   );

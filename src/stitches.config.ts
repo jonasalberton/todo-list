@@ -1,7 +1,5 @@
-import { createStitches } from '@stitches/react';
 import ThemeColors from './models/ThemeColors';
-
-const colors: Partial<ThemeColors> = {};
+import { createStitches } from '@stitches/react';
 
 export const {
   styled,
@@ -14,13 +12,20 @@ export const {
   config,
 } = createStitches({
   theme: {
-   colors: {} as ThemeColors,
+   colors: {
+     white: '#ffff'
+   },
+   sizes: {
+     lg: '25px',
+     xlg: '40px'
+   },
    fontSizes: {
      sm: '15px',
-     md: '18px'
+     md: '18px',
+     lg: '25px'
    },
    space: {
-     md: '1rem'
+     md: '1rem',
    },
    shadows: {
      md: 'rgb(50 50 93 / 25%) 0px 30px 60px -12px, rgb(0 0 0 / 30%) 0px 18px 36px -18px'
@@ -28,6 +33,9 @@ export const {
    radii: {
      md: '5px',
      circle: '50%'
+   },
+   fonts: {
+     josefin: 'Josefin Sans, sans-serif'
    }
   },
   media: {

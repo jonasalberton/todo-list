@@ -5,7 +5,7 @@ type ThemeColors = {
   component: string,
   border: string,
   checkboxBorder: string,
-  primary: string
+  primary: string,
 }
 
 export default ThemeColors;

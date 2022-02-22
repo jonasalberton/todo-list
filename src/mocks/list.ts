@@ -2,29 +2,39 @@ import { Task } from "../models/Task";
 
 const list: Task[] = [
   {
-    id: '1',
-    isCompleted: true,
-    text: 'Fix filters font-size'
-  },
-  {
-    id: '2',
-    isCompleted: true,
-    text: 'Fix filters style'
-  },
-  {
-    id: '3',
-    isCompleted: true,
-    text: 'Fix title'
-  },
-  {
     id: '4',
-    isCompleted: true,
-    text: 'Fix Checkbox Dark Theme'
+    isCompleted: false,
+    text: 'Fix Tokens'
   },
   {
     id: '5',
     isCompleted: false,
     text: 'Fix Text Dark Theme'
+  },
+  {
+    id: '6',
+    isCompleted: false,
+    text: 'Refact the code'
+  },
+  {
+    id: '7',
+    isCompleted: false,
+    text: 'Drag and Drop feature'
+  },
+  {
+    id: '8',
+    isCompleted: false,
+    text: 'Add unit testes with Jest'
+  },
+  {
+    id: '9',
+    isCompleted: false,
+    text: 'Add interface tests with Cypress'
+  },
+  {
+    id: '10',
+    isCompleted: false,
+    text: 'CI/CD using Netlify'
   },
 ];
 

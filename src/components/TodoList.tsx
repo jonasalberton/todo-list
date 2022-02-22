@@ -61,64 +61,65 @@ const Button = styled('button', {
 
 const Typograph = styled('span', {
   fontSize: '$sm',
-  
 })
 
+
+
 type State = {
-  viewList: Task[],
+  taskList: Task[],
   filter: Filter,
 }
 
+
+
 function TodoList() {
-  const [state, setState] = useState<State>({viewList: TaskStore.getTaskList(), filter: 'All'});
+  const [state, setState] = useState<State>({taskList: TaskStore.getTaskList(), filter: 'All'});
 
-  const addTask = (task: Task) => {
-    const newList = [task, ...TaskStore.getTaskList()];
-    TaskStore.setTaskList(newList);
-    updateListView(newList);
-  }
-
-  const updateListView = (viewList: Task[]) => {
+  const updateData = (viewList: Task[]) => {
+    TaskStore.setTaskList(viewList);
     setState({
       ...state,
-      viewList
+      taskList: viewList
     })
   }
 
-  const onChangeTaskStatus = (taskId: string, value: boolean) => {
+  const addTask = (task: Task) => {
+    const newList = [task, ...TaskStore.getTaskList()];
+    updateData(newList);
+  }
+
+  const onChangeTaskStatus = (taskId: string, newValue: boolean) => {
     const newList = TaskStore.getTaskList().map(item => {
-      if (item.id === taskId) item.isCompleted = value;
+      if (item.id === taskId) item.isCompleted = newValue;
       return item;
     });
 
-    TaskStore.setTaskList(newList);
-    updateListView(newList);
+    updateData(newList);
   }
 
   const removeCompletedItens = () => {
-    const newItens = TaskStore.getTaskList().filter(item => item.isCompleted !== true);
-    TaskStore.setTaskList(newItens);
-    updateListView(newItens);
+    const newItens = TaskStore.getTaskList().filter(item => !item.isCompleted);
+    updateData(newItens);
   }
 
   const showActiveItens = () => {
     setState({
       filter: 'Active',
-      viewList: TaskStore.getTaskList().filter(item => !item.isCompleted)
+      taskList: TaskStore.getTaskList().filter(item => !item.isCompleted)
     });
   }
 
   const showCompletedItens = () => {
     setState({
       filter: 'Completed',
-      viewList: TaskStore.getTaskList().filter(item => item.isCompleted)
+      taskList: TaskStore.getTaskList().filter(item => item.isCompleted)
     });
   }
 
   const showAllItens = () => {
     setState({
       filter: 'All',
-      viewList: TaskStore.getTaskList()
+      taskList: TaskStore.getTaskList()
     });
   }
 
@@ -126,7 +127,7 @@ function TodoList() {
     <div>
       <Input onAddNew={addTask}></Input>
       {
-        state.viewList.map((item, index) =>
+        state.taskList.map((item, index) =>
           <Container key={item.id} border={index === 0 ? 'roundTop' : 'noBorder'} completed={item.isCompleted}>
             <CheckBox 
               value={item.isCompleted}
@@ -135,9 +136,9 @@ function TodoList() {
           </Container>)}
 
       {
-        state.viewList.length > 0 &&
+        state.taskList.length > 0 &&
         <Container border="roundBottom" justify="between">
-          <Typograph>{state.viewList.length} itens left</Typograph>
+          <Typograph>{state.taskList.length} itens left</Typograph>
           <div>
             <Button onClick={showAllItens} selected={state.filter === 'All'}>
               <Typograph >All</Typograph>

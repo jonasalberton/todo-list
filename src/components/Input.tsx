@@ -1,7 +1,7 @@
 import CheckBox from "./CheckBox";
 import type { Task } from "../models/Task";
 import { styled } from '../stitches.config';
-import { generateRandomId } from '../utils/index';
+import { generateRandomUUID } from '../utils/index';
 import { KeyboardEvent, useState } from "react";
 
 const Container = styled('div', {
@@ -34,7 +34,7 @@ function TodoInput({ onAddNew }: Props) {
 
   const createTodo = (text: string, isCompleted: boolean): Task => {
     return {
-      id: generateRandomId(),
+      id: generateRandomUUID(),
       isCompleted,
       text
     };

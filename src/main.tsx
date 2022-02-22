@@ -1,6 +1,6 @@
+import App from './App';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import { globalCss } from './stitches.config';
 
 const globalStyles = globalCss({
@@ -8,7 +8,7 @@ const globalStyles = globalCss({
     margin: 0,
     padding: 0,
     fontSize: '$md',
-    fontFamily: 'Josefin Sans, sans-serif;'
+    fontFamily: '$josefin'
   },
   '::placeholder': {
     color: '$text'

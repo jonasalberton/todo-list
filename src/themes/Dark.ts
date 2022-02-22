@@ -8,7 +8,7 @@ const colors: ThemeColors = {
   component: 'hsl(235, 24%, 19%)',
   border: 'hsl(232, 18%, 25%)',
   checkboxBorder: 'hsl(232, 18%, 25%)',
-  primary: 'hsl(220, 98%, 61%)'
+  primary: 'hsl(220, 98%, 61%)',
 }
 
 const DarkTheme = createTheme({

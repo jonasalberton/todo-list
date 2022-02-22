@@ -5,21 +5,21 @@ import darkBg from '../assets/bg-desktop-dark.jpg';
 import lightBg from '../assets/bg-desktop-light.jpg';
 
 const Heading = styled('div',  {
-  position: 'absolute',
-  width: '100%',
   top: 0,
+  width: '100%',
   height: '300px',
-  backgroundRepeat: 'no-repeat',
+  position: 'absolute',
   backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
 });
 
 
 function Header() {
   const { theme } = useContext(ThemeContext);
-  const background = theme === 'dark' ? darkBg : lightBg;
+  const backgroundImage = theme === 'dark' ? darkBg : lightBg;
 
   return (
-    <Heading style={{backgroundImage: `url(${background})`}}></Heading>
+    <Heading style={{backgroundImage: `url(${backgroundImage})`}}></Heading>
   );
 }
 
