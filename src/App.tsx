@@ -9,8 +9,8 @@ import localStorageService from './services/localStorageService';
 
 const Body = styled('div', {
   width: '100%',
-  minHeight: '100vh',
   color: '$text',
+  minHeight: '100vh',
   background: '$backgroundApp',
 });
 

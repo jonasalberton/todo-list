@@ -13,7 +13,9 @@ const colors: ThemeColors = {
   component: 'hsl(0, 0%, 100%)',
   border: 'hsl(0, 0%, 96%)',
   checkboxBorder: 'hsl(0, 0%, 88%)',
-  primary: 'hsl(220, 98%, 61%)'
+  primary: 'hsl(220, 98%, 61%)',
+  purple: 'hsl(280, 87%, 65%)',
+  cian: 'hsl(192, 100%, 67%)'
 }
 
 const LightTheme = createTheme({

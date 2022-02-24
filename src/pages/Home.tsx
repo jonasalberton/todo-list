@@ -1,7 +1,7 @@
 import Header from '../components/Header';
+import Toolbar from '../components/Toolbar';
 import { styled } from '../stitches.config';
 import TodoList from '../components/TodoList';
-import Toolbar from '../components/Toolbar';
 
 const Container = styled('div', {
   display: 'flex',
@@ -10,9 +10,9 @@ const Container = styled('div', {
 })
 
 const Body = styled('div', {
+  zIndex: 1,
   width: '100%',
   maxWidth: '600px',
-  zIndex: '1'
 })
 
 

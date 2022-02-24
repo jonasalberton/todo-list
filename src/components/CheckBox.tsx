@@ -6,13 +6,13 @@ const Container = styled('div', {
   height: '$lg',
   display: 'flex',
   flexShrink: 0,
-  position: 'relative',
   cursor: 'pointer',
   marginRight: '$md',
+  position: 'relative',
   border: '2px solid $checkboxBorder',
   borderRadius: '$circle',
   '&:hover': {
-    border: '2px solid hsl(280, 87%, 65%)'
+    border: '2px solid $purple'
   }
 });
 
@@ -37,7 +37,7 @@ const Checkmark = styled('span', {
   alignItems: 'center',
   borderRadius: '$circle',
   justifyContent: 'center',
-  background: 'linear-gradient(113deg, #57ddff, #c058f3)',
+  background: 'linear-gradient(113deg, $cian, $purple)',
   variants: {
     checked: {
       true: {
@@ -56,7 +56,6 @@ type Props = {
   value: boolean,
   onChange?: (value: boolean) => void
 };
-
 
 function CheckBox({ value, onChange }: Props) {
 

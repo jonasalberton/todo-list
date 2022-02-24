@@ -14,6 +14,8 @@ const colors: ThemeColors = {
   border: 'hsl(232, 18%, 25%)',
   checkboxBorder: 'hsl(232, 18%, 25%)',
   primary: 'hsl(220, 98%, 61%)',
+  purple: 'hsl(280, 87%, 65%)',
+  cian: 'hsl(192, 100%, 67%)'
 }
 
 const DarkTheme = createTheme({

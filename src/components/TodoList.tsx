@@ -83,7 +83,7 @@ function TodoList() {
     })
   }
 
-  const addTask = (task: Task) => {
+  const handleAddTask = (task: Task) => {
     const newList = [task, ...TaskStore.getTaskList()];
     updateData(newList);
   }
@@ -125,7 +125,7 @@ function TodoList() {
 
   return (
     <div>
-      <Input onAddNew={addTask}></Input>
+      <Input onTaskAdd={handleAddTask}></Input>
       {
         state.taskList.map((item, index) =>
           <Container key={item.id} border={index === 0 ? 'roundTop' : 'noBorder'} completed={item.isCompleted}>

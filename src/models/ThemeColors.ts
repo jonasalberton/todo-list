@@ -6,6 +6,8 @@ type ThemeColors = {
   border: string,
   checkboxBorder: string,
   primary: string,
+  purple: string,
+  cian: string
 }
 
 export default ThemeColors;

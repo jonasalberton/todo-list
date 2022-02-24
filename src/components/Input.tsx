@@ -1,38 +1,38 @@
 import CheckBox from "./CheckBox";
 import type { Task } from "../models/Task";
 import { styled } from '../stitches.config';
-import { generateRandomUUID } from '../utils/index';
 import { KeyboardEvent, useState } from "react";
+import { generateRandomUUID } from '../utils/index';
 
 const Container = styled('div', {
-  display: 'flex',
-  background: '$component',
-  alignItems: 'center',
-  borderRadius: '$md',
-  boxSizing: 'border-box',
   padding: '$md',
-  marginBottom: '$md'
-})
+  display: 'flex',
+  marginBottom: '$md',
+  borderRadius: '$md',
+  alignItems: 'center',
+  background: '$component',
+  boxSizing: 'border-box',
+});
 
 const Input = styled('input', {
+  flex: 1,
   height: '100%',
-  display: 'flex',
-  background: '$component',
-  flex: '1',
+  color: '$text',
   border: 'none',
+  display: 'flex',
   outline: 'none',
-  color: '$text'
-})
+  background: '$component',
+});
+
 
 type Props = {
-  onAddNew: (todo: Task) => void
+  onTaskAdd: (todo: Task) => void
 }
 
-function TodoInput({ onAddNew }: Props) {
-  const [checkBoxValue, setCheckBoxValue] = useState<boolean>(false);
-  const enterKey = 'Enter';
+function TaskInput({ onTaskAdd }: Props) {
+  const [isCompleted, setIsCompleted] = useState<boolean>(false);
 
-  const createTodo = (text: string, isCompleted: boolean): Task => {
+  const buildTask = (text: string, isCompleted: boolean): Task => {
     return {
       id: generateRandomUUID(),
       isCompleted,
@@ -42,34 +42,34 @@ function TodoInput({ onAddNew }: Props) {
 
   const resetState = (inputInstance: HTMLInputElement): void => {
     inputInstance.value = '';
-    setCheckBoxValue(false);
+    setIsCompleted(false);
   }
 
-  const handleKeyPress = (event: KeyboardEvent<HTMLInputElement>): void => {
-    if (event.key !== enterKey) return;
+  const handleOnKeyPress = (event: KeyboardEvent<HTMLInputElement>): void => {
+    if (event.key !== 'Enter') return;
 
     const inputEl = event.currentTarget;
     
     if (inputEl.value.length === 0) {
-      alert('type some text');
+      alert('Type some text');
       return;
     }
 
-    onAddNew(createTodo(inputEl.value, checkBoxValue));
+    onTaskAdd(buildTask(inputEl.value, isCompleted));
     resetState(inputEl);
   }
 
   return (
     <Container>
-      <CheckBox value={checkBoxValue} onChange={setCheckBoxValue}></CheckBox>
+      <CheckBox value={isCompleted} onChange={setIsCompleted}></CheckBox>
       <Input
-        onKeyPress={handleKeyPress}
+        onKeyPress={handleOnKeyPress}
         placeholder="Type your text here"
-        name="teste"
+        name="input"
         type="text">
       </Input>
     </Container>
   );
 }
 
-export default TodoInput;
+export default TaskInput;

@@ -1,5 +1,5 @@
-import { createContext } from "react";
 import Theme from '../models/Theme';
+import { createContext } from "react";
 
 type Context = {
   theme: Theme,
