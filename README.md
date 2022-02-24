@@ -1,4 +1,7 @@
-# Todo list
+# Build Status: 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/71f0c2c8-bf71-4ae3-a4d6-de9019bd8da3/deploy-status)](https://app.netlify.com/sites/todoalberton/deploys)
+
+## Todo list
 
 Click in this link to access the live app hosted on Netlify https://todoalberton.netlify.app/
 
