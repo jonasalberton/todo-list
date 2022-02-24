@@ -1,5 +1,6 @@
 import ThemeColors from './models/ThemeColors';
 import { createStitches } from '@stitches/react';
+import ThemeShadows from './models/ThemeShadows';
 
 export const {
   styled,
@@ -27,9 +28,7 @@ export const {
    space: {
      md: '1rem',
    },
-   shadows: {
-     md: 'rgb(50 50 93 / 25%) 0px 30px 60px -12px, rgb(0 0 0 / 30%) 0px 18px 36px -18px'
-   },
+   shadows: {} as ThemeShadows,
    radii: {
      md: '5px',
      circle: '50%'
