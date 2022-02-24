@@ -8,12 +8,12 @@ import * as TaskStore from '../store/taskStore';
 
 const Container = styled('div', {
   display: 'flex',
-  background: '$component',
+  padding: '$md',
+  boxShadow: '$md',
   alignItems: 'center',
   boxSizing: 'border-box',
-  padding: '$md',
+  background: '$component',
   borderBottom: '1px solid $border',
-  boxShadow: '$md',
   variants: {
     border: {
       roundTop: {
@@ -42,11 +42,11 @@ const Container = styled('div', {
 });
 
 const Button = styled('button', {
-  border: 'none',
-  background: 'none',
-  padding: '0 5px',
   color: '$text',
+  border: 'none',
+  padding: '0 5px',
   cursor: 'pointer',
+  background: 'none',
   '&:hover': {
     opacity: '.6'
   },
@@ -61,7 +61,7 @@ const Button = styled('button', {
 
 const Typograph = styled('span', {
   fontSize: '$sm',
-})
+});
 
 
 
@@ -70,16 +70,14 @@ type State = {
   filter: Filter,
 }
 
-
-
 function TodoList() {
   const [state, setState] = useState<State>({taskList: TaskStore.getTaskList(), filter: 'All'});
 
-  const updateData = (viewList: Task[]) => {
-    TaskStore.setTaskList(viewList);
+  const updateData = (list: Task[]) => {
+    TaskStore.setTaskList(list);
     setState({
       ...state,
-      taskList: viewList
+      taskList: list
     })
   }
 
