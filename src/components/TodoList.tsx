@@ -37,7 +37,8 @@ const Container = styled('div', {
         color: '$disableText',
         textDecoration: 'line-through'
       }
-    }
+    },
+  
   }
 });
 
@@ -63,15 +64,34 @@ const Typograph = styled('span', {
   fontSize: '$sm',
 });
 
+const DragItem = styled('div', {
+  display: 'block',
+  height: '66px',
+  transition: '.2s',
+  variants: {
+    marginTop: {
+      true: {
+        paddingTop: '90px'
+      }
+    },
+    marginBotton: {
+      true: {
+        paddingBottom: '90px'
+      }
+    }
+  }
+})
 
 
 type State = {
   taskList: Task[],
   filter: Filter,
+  dragOver?: Task,
+  dragIndex: number
 }
 
 function TodoList() {
-  const [state, setState] = useState<State>({taskList: TaskStore.getTaskList(), filter: 'All'});
+  const [state, setState] = useState<State>({taskList: TaskStore.getTaskList(), filter: 'All', dragIndex: 0});
 
   const updateData = (list: Task[]) => {
     TaskStore.setTaskList(list);
@@ -102,6 +122,7 @@ function TodoList() {
 
   const showActiveItens = () => {
     setState({
+      ...state,
       filter: 'Active',
       taskList: TaskStore.getTaskList().filter(item => !item.isCompleted)
     });
@@ -109,6 +130,7 @@ function TodoList() {
 
   const showCompletedItens = () => {
     setState({
+      ...state,
       filter: 'Completed',
       taskList: TaskStore.getTaskList().filter(item => item.isCompleted)
     });
@@ -116,9 +138,52 @@ function TodoList() {
 
   const showAllItens = () => {
     setState({
+      ...state,
       filter: 'All',
       taskList: TaskStore.getTaskList()
     });
+  }
+
+  const handleOnDragStart = (event: React.DragEvent<HTMLDivElement>, item: Task, index: number) => {
+    event.dataTransfer.setData('id', item.id);
+    setState({
+      ...state,
+      dragIndex: index
+    })
+  };
+  
+  const handleOnDragEnter = (item: Task) => {
+    setState({
+      ...state,
+      dragOver: item
+    })
+  }
+
+  const handleOnDrop = (event: React.DragEvent<HTMLDivElement>, dropOnItem: Task) => {
+    // TODO Refact the code
+    console.log('on Drop', event.dataTransfer.getData('id'));
+    const itemDragId = event.dataTransfer.getData('id')
+
+    if (!itemDragId) return;
+
+    const itemDragedIndex = state.taskList.findIndex(item => item.id === itemDragId);
+    const itemDropedIndex = state.taskList.findIndex(item => item.id === dropOnItem.id);
+
+    const copyList = [...state.taskList];
+
+    const task = copyList.splice(itemDragedIndex, 1)[0];
+
+    copyList.splice(itemDropedIndex, 0, task);
+
+    updateData(copyList);
+  }
+
+
+  const handleDragEnd = (event: React.DragEvent<HTMLDivElement>, item: Task) => {
+    setState({
+      ...state,
+      dragOver: undefined
+    })
   }
 
   return (
@@ -126,12 +191,27 @@ function TodoList() {
       <Input onTaskAdd={handleAddTask}></Input>
       {
         state.taskList.map((item, index) =>
-          <Container key={item.id} border={index === 0 ? 'roundTop' : 'noBorder'} completed={item.isCompleted}>
+        <DragItem 
+          key={item.id}
+          marginTop={state.dragOver?.id === item.id  && state.dragIndex > index}
+          marginBotton={state.dragOver?.id === item.id && state.dragIndex < index}
+          onDragOver={(e) => e.preventDefault()}
+          onDrop={(e) => handleOnDrop(e, item)}
+        >
+          <Container
+            draggable
+            onDragStart={(e) => handleOnDragStart(e, item, index)}
+            onDragEnter={(e) => handleOnDragEnter(item)}
+            onDragEnd={(e) => handleDragEnd(e, item)}
+            border={index === 0 ? 'roundTop' : 'noBorder'}
+            completed={item.isCompleted}>
             <CheckBox 
               value={item.isCompleted}
               onChange={(value) => onChangeTaskStatus(item.id, value)}/>
               {item.text}
-          </Container>)}
+          </Container>
+        </DragItem>
+          )}
 
       {
         state.taskList.length > 0 &&
