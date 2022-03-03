@@ -27,6 +27,7 @@ export const {
    },
    space: {
      md: '1rem',
+     lg: '2rem',
    },
    shadows: {} as ThemeShadows,
    radii: {

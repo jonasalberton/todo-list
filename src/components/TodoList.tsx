@@ -5,42 +5,13 @@ import Filter from '../models/Filter';
 import type { Task } from '../models/Task';
 import { styled } from '../stitches.config';
 import * as TaskStore from '../store/taskStore';
+import Container from "../elements/Container";
+import DraggableItem from "../elements/DraggableItem";
 
-const Container = styled('div', {
-  display: 'flex',
-  padding: '$md',
-  boxShadow: '$md',
-  alignItems: 'center',
-  boxSizing: 'border-box',
-  background: '$component',
-  borderBottom: '1px solid $border',
-  variants: {
-    border: {
-      roundTop: {
-        borderRadius: '$md $md 0 0'
-      },
-      noBorder: {
-        borderRadius: '0'
-      },
-      roundBottom: {
-        borderRadius: '0 0 $md $md'
-      },
-    },
-    justify: {
-      between: {
-        display: 'flex',
-        justifyContent: 'space-between'
-      }
-    },
-    completed: {
-      true: {
-        color: '$disableText',
-        textDecoration: 'line-through'
-      }
-    },
-  
-  }
-});
+const DragMesage = styled('div', {
+  marginTop: '$lg',
+  textAlign: 'center'
+})
 
 const Button = styled('button', {
   color: '$text',
@@ -64,23 +35,6 @@ const Typograph = styled('span', {
   fontSize: '$sm',
 });
 
-const DragItem = styled('div', {
-  display: 'block',
-  height: '66px',
-  transition: '.2s',
-  variants: {
-    marginTop: {
-      true: {
-        paddingTop: '90px'
-      }
-    },
-    marginBotton: {
-      true: {
-        paddingBottom: '90px'
-      }
-    }
-  }
-})
 
 
 type State = {
@@ -161,8 +115,7 @@ function TodoList() {
 
   const handleOnDrop = (event: React.DragEvent<HTMLDivElement>, dropOnItem: Task) => {
     // TODO Refact the code
-    console.log('on Drop', event.dataTransfer.getData('id'));
-    const itemDragId = event.dataTransfer.getData('id')
+    const itemDragId = event.dataTransfer.getData('id');
 
     if (!itemDragId) return;
 
@@ -179,22 +132,24 @@ function TodoList() {
   }
 
 
-  const handleDragEnd = (event: React.DragEvent<HTMLDivElement>, item: Task) => {
+  const handleDragEnd = () => {
     setState({
       ...state,
-      dragOver: undefined
+      dragOver: undefined,
+      dragIndex: 0
     })
   }
 
   return (
+    <>
     <div>
       <Input onTaskAdd={handleAddTask}></Input>
       {
         state.taskList.map((item, index) =>
-        <DragItem 
-          key={item.id}
-          marginTop={state.dragOver?.id === item.id  && state.dragIndex > index}
-          marginBotton={state.dragOver?.id === item.id && state.dragIndex < index}
+        <DraggableItem 
+        key={item.id}
+        marginTop={state.dragOver?.id === item.id  && state.dragIndex > index}
+        marginBotton={state.dragOver?.id === item.id && state.dragIndex < index}
           onDragOver={(e) => e.preventDefault()}
           onDrop={(e) => handleOnDrop(e, item)}
         >
@@ -202,7 +157,7 @@ function TodoList() {
             draggable
             onDragStart={(e) => handleOnDragStart(e, item, index)}
             onDragEnter={(e) => handleOnDragEnter(item)}
-            onDragEnd={(e) => handleDragEnd(e, item)}
+            onDragEnd={handleDragEnd}
             border={index === 0 ? 'roundTop' : 'noBorder'}
             completed={item.isCompleted}>
             <CheckBox 
@@ -210,7 +165,7 @@ function TodoList() {
               onChange={(value) => onChangeTaskStatus(item.id, value)}/>
               {item.text}
           </Container>
-        </DragItem>
+        </DraggableItem>
           )}
 
       {
@@ -236,6 +191,8 @@ function TodoList() {
         </Container>
       }
     </div>
+    <DragMesage>Drag and Drop to reorder itens</DragMesage>
+  </>
   );
 }
 
