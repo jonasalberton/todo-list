@@ -10,7 +10,7 @@ Click in this link to access the live app hosted on Netlify https://todoalberton
 
 This design was inpired by [Todo app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/todo-app-Su1_KokOW).
 
-![Tux, the Linux mascot](design/design/active-states-light.jpg)
+![Tux, the Linux mascot](design/design/desktop-design-light.jpg)
   
   
 ### Technologies
