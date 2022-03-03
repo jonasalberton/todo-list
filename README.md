@@ -14,6 +14,7 @@ This design was inpired by [Todo app challenge on Frontend Mentor](https://www.f
   
   
 ### Technologies
+![Tux, the Linux mascot](design/design/tecs.png)
 - React
 - Typescript
 - Vite
