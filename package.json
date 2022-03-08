@@ -9,6 +9,7 @@
     "test:watch": "jest --watch"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.8.0",
     "@stitches/react": "^1.2.6",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.3",
