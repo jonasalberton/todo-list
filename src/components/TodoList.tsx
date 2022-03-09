@@ -191,7 +191,7 @@ function TodoList() {
         </Container>
       }
     </div>
-    <DragMesage>Drag and Drop to reorder itens</DragMesage>
+    {state.taskList.length > 0 &&  <DragMesage>Drag and Drop to reorder itens</DragMesage>}
   </>
   );
 }
