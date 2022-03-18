@@ -14,30 +14,6 @@ const DragMesage = styled('div', {
   textAlign: 'center'
 })
 
-const Button = styled('button', {
-  color: '$text',
-  border: 'none',
-  padding: '0 5px',
-  cursor: 'pointer',
-  background: 'none',
-  '&:hover': {
-    opacity: '.6'
-  },
-  variants: {
-    selected: {
-      true: {
-        color: '$primary'
-      }
-    }
-  }
-});
-
-const Typograph = styled('span', {
-  fontSize: '$sm',
-});
-
-
-
 type State = {
   taskList: Task[],
   filter: Filter,
@@ -141,7 +117,6 @@ function TodoList() {
 
     updateData(copyList);
   }
-
 
   const handleDragEnd = () => {
     setState({
