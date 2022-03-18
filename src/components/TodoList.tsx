@@ -1,4 +1,5 @@
 import Input from "./Input";
+import Footer from './Footer';
 import { useState } from "react";
 import CheckBox from "./CheckBox";
 import Filter from '../models/Filter';
@@ -74,6 +75,16 @@ function TodoList() {
     updateData(newItens);
   }
 
+  const onChangeFilter = (filter: Filter) => {
+    let map = new Map<Filter, () => void>();
+    map.set('Active', showActiveItens);
+    map.set('All', showAllItens);
+    map.set('Completed', showCompletedItens)
+  
+    let fn = map.get(filter);
+    fn && fn();
+  }
+
   const showActiveItens = () => {
     setState({
       ...state,
@@ -147,9 +158,9 @@ function TodoList() {
       {
         state.taskList.map((item, index) =>
         <DraggableItem 
-        key={item.id}
-        marginTop={state.dragOver?.id === item.id  && state.dragIndex > index}
-        marginBotton={state.dragOver?.id === item.id && state.dragIndex < index}
+          key={item.id}
+          marginTop={state.dragOver?.id === item.id  && state.dragIndex > index}
+          marginBotton={state.dragOver?.id === item.id && state.dragIndex < index}
           onDragOver={(e) => e.preventDefault()}
           onDrop={(e) => handleOnDrop(e, item)}
         >
@@ -170,25 +181,12 @@ function TodoList() {
 
       {
         state.taskList.length > 0 &&
-        <Container border="roundBottom" justify="between">
-          <Typograph>{state.taskList.length} itens left</Typograph>
-          <div>
-            <Button onClick={showAllItens} selected={state.filter === 'All'}>
-              <Typograph >All</Typograph>
-            </Button>
-
-            <Button onClick={showActiveItens} selected={state.filter === 'Active'}>
-              <Typograph >Active</Typograph>
-            </Button>
-
-            <Button onClick={showCompletedItens} selected={state.filter === 'Completed'}>
-              <Typograph >Completed</Typograph>
-            </Button>
-          </div>
-            <Button onClick={removeCompletedItens}>
-              <Typograph>Clear Completed</Typograph>
-            </Button>
-        </Container>
+          <Footer
+            length={state.taskList.length}
+            filter={state.filter}
+            onChangeFilter={onChangeFilter}
+            onClearCompleted={removeCompletedItens}
+          />
       }
     </div>
     {state.taskList.length > 0 &&  <DragMesage>Drag and Drop to reorder itens</DragMesage>}
