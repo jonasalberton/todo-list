@@ -164,7 +164,7 @@ function TodoList() {
           />
       }
     </div>
-    {state.taskList.length > 0 &&  <DragMesage>Drag and Drop to reorder itens</DragMesage>}
+    {state.taskList.length > 0 &&  <DragMesage>Segure e arraste para ordenar as tarefas</DragMesage>}
   </>
   );
 }

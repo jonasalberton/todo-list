@@ -37,22 +37,22 @@ function Footer(props: Props) {
   
   return (
     <Container border="roundBottom" justify="between">
-      <Typograph>{props.length} itens left</Typograph>
+      <Typograph>{props.length} itens</Typograph>
       <div>
         <Button onClick={() => props.onChangeFilter('All')} selected={props.filter === 'All'}>
-          <Typograph >All</Typograph>
+          <Typograph >Todas</Typograph>
         </Button>
 
         <Button onClick={() => props.onChangeFilter('Active')} selected={props.filter === 'Active'}>
-          <Typograph >Active</Typograph>
+          <Typograph >Ativas</Typograph>
         </Button>
 
         <Button onClick={() => props.onChangeFilter('Completed')} selected={props.filter === 'Completed'}>
-          <Typograph >Completed</Typograph>
+          <Typograph >Finalizadas</Typograph>
         </Button>
       </div>
         <Button onClick={props.onClearCompleted}>
-          <Typograph>Clear Completed</Typograph>
+          <Typograph>Remover Finalizadas</Typograph>
         </Button>
     </Container>
   );

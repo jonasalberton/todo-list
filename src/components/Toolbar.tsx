@@ -20,7 +20,7 @@ function Toolbar() {
   
   return (
     <TitleContainer>
-      <Title>Todo</Title>
+      <Title>Tarefas</Title>
       <ThemeSwitcher/>
   </TitleContainer>
   )

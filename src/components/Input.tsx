@@ -51,7 +51,7 @@ function TaskInput({ onTaskAdd }: Props) {
     const inputEl = event.currentTarget;
     
     if (inputEl.value.length === 0) {
-      alert('Type some text');
+      alert('Escreva alguma coisa');
       return;
     }
 
@@ -63,8 +63,9 @@ function TaskInput({ onTaskAdd }: Props) {
     <Container>
       <CheckBox value={isCompleted} onChange={setIsCompleted}></CheckBox>
       <Input
+        autoComplete="off"
         onKeyPress={handleOnKeyPress}
-        placeholder="Type your text here"
+        placeholder="Escreva sua tarefa aqui"
         name="input"
         type="text">
       </Input>

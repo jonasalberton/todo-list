@@ -2,7 +2,7 @@ import { styled } from '../stitches.config';
 
 const DraggableItem = styled('div', {
   display: 'block',
-  height: '66px',
+  minHeight: '66px',
   transition: '.2s',
   variants: {
     marginTop: {
